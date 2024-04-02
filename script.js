@@ -6,6 +6,12 @@ async function dataStarWars(){
     let planets = await data.json();
     results = planets.results;
     console.log(results[0]);
+   
+    return results
+}
+
+async function planets(){
+    results = await dataStarWars();
     let i = 0;
     results.forEach(planet => {
         let btn = document.createElement('button');
@@ -31,4 +37,26 @@ function dataPlanet(i){
         </ul>
     `
     index.appendChild(list)
+}
+
+
+async function newpage() {
+    const formData = new FormData(document.getElementById('Pesquisar'));
+    const planetname = formData.get('Pesquisa');
+
+    results = await dataStarWars();
+
+    results.forEach((planet) => {
+        if (planet.name === planetname) {
+            
+            const url = 'show.html?' +
+                'name=' + encodeURIComponent(planetname) + '&' +
+                'climate=' + encodeURIComponent(planet.climate) + '&' +
+                'population=' + encodeURIComponent(planet.population) + '&' +
+                'terrain=' + encodeURIComponent(planet.terrain);
+
+           
+            window.location.href = url;
+        }
+    });
 }

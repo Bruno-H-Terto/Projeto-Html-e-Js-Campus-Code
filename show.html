@@ -10,9 +10,35 @@
         <a href="/index.html">Home</a>
         <h2 id="info"></h2>
         </header>
-    <script src="script.js"></script>
+<script>
+    window.onload = function () {
+        var url = document.location.href;
+        var params = url.split('?')[1];
+        
+        if (params) {
+            var data = {};
+            var pairs = params.split('&');
 
-    <div id="planet"></div>
+            pairs.forEach(function(pair) {
+                var parts = pair.split('=');
+                data[parts[0]] = decodeURIComponent(parts[1]);
+            });
+
+            
+            document.getElementById('planet').innerText = 'Nome: ' + data.name;
+            document.getElementById('climate').innerText = 'Clima: ' + data.climate;
+            document.getElementById('population').innerText = 'População: ' + data.population;
+            document.getElementById('terrain').innerText = 'Terreno: ' + data.terrain;
+            document.getElementById('info').innerText = data.name;
+        }
+    }
+</script>
+
+<div id="planet"></div>
+<div id="climate"></div>
+<div id="population"></div>
+<div id="terrain"></div>
+
 
 
 </body>
