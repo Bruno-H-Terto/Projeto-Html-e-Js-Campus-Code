@@ -1,7 +1,10 @@
 let point= document.getElementById('point');
 let results = [];
 async function dataStarWars(){
-
+    const button = document.getElementById('btn1');
+    button.disabled = true;
+    button.hidden = true;
+    point.innerHTML = '';
     let data = await fetch('https://swapi.dev/api/planets/?format=json');
     let planets = await data.json();
     results = planets.results;
@@ -22,6 +25,7 @@ async function planets(){
         point.appendChild(btn);
         i++;
     });
+    
 }
 
 function dataPlanet(i){
@@ -59,4 +63,8 @@ async function newpage() {
             window.location.href = url;
         }
     });
+    const button = document.getElementById('btn1');
+    button.disabled = false;
+    button.hidden = false;
+    document.getElementById('res').innerText = 'Planeta não localizado!'
 }

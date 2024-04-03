@@ -4,7 +4,7 @@ async function dataStarWars(){
     let data = await fetch('https://swapi.dev/api/planets/?format=json');
     let planets = await data.json();
     results = planets.results;
-    console.log(results[0]);
+ 
 
     return results
 }
@@ -14,7 +14,11 @@ async function dataStarWars(){
 
 async function famouspeople() {
 
+        const button = document.getElementById('btn');
+        button.disabled = true;
+        button.hidden = true;
         const results = await dataStarWars();
+
         const url = document.location.href;
         const params = url.split('?')[1];
 
@@ -31,20 +35,44 @@ async function famouspeople() {
             if (planet.name === data.name) {
                 const response = await fetch(`https://swapi.dev/api/planets/${i}/?format=json`);
                 const peopleData = await response.json();
-                const people = peopleData.residents;
+                var people = peopleData.residents;
                 
-            }})}
+                t(people);
+                console.log(people);
+            }
+            i++;
+        
+        })
+        
+        }
 async function t(people) {
-    let person = await people;
     let point = document.getElementById('resident');
-    console.log(person);
+    point.innerHTML = '';
+    if(people.length == 0){
+        point.innerHTML= `        <tr>
+        <td>Sem registro</td>
+        <td>Sem registro</td>
+        </tr>`
+        return
+    }
+    
+    
 
-    person.forEach(p => {
+    let person = await people;
+    person.forEach(async (p) => {
+        const datap = await fetch(p);
+        let innerpeople = await datap.json();
+        console.log(innerpeople);
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${p.name}</td>
-            <td>${p.birth_year}</td>
+        <tr>
+            <td>${innerpeople.name}</td>
+            <td>${innerpeople.birth_year}</td>
+            </tr>
         `;
+        
         point.appendChild(row);
+
     });
+
 }
