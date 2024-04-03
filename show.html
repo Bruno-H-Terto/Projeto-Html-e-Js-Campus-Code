@@ -6,51 +6,29 @@
     <title>Consultando</title>
 </head>
 <body>
+    <script src="script2.js"></script>
+
+
     <header><h1>Censo Galático: campo de busca</h1>
         <a href="/index.html">Home</a>
         <h2 id="info"></h2>
-        </header>
-<script>
-    window.onload = function () {
-        var url = document.location.href;
-        var params = url.split('?')[1];
-        
-        if (params) {
-            var data = {};
-            var pairs = params.split('&');
+    </header>
 
-            pairs.forEach(function(pair) {
-                var parts = pair.split('=');
-                data[parts[0]] = decodeURIComponent(parts[1]);
-            });
-
-            
-            document.getElementById('planet').innerText = 'Nome: ' + data.name;
-            document.getElementById('climate').innerText = 'Clima: ' + data.climate;
-            document.getElementById('population').innerText = 'População: ' + data.population;
-            document.getElementById('terrain').innerText = 'Terreno: ' + data.terrain;
-            document.getElementById('info').innerText = data.name;
-        }
-
-    }
-</script>
-<script src="script2.js"></script>
-
-<div id="planet"></div>
-<div id="climate"></div>
-<div id="population"></div>
-<div id="terrain"></div>
+    <div id="planet"></div>
+    <div id="climate"></div>
+    <div id="population"></div>
+    <div id="terrain"></div>
 
 
-<button onclick="famouspeople()" id="btn">Listar pessoas notáveis</button>
-<table>
-    <thead>
-        <tr>
-    <th>Nome</th>
-    <th>Data de Nascimento</th>
-</tr>
-</thead>
-    <tbody id="resident">
+    <button onclick="famouspeople()" id="btn">Listar pessoas notáveis</button>
+    <table>
+        <thead>
+            <tr>
+        <th>Nome</th>
+        <th>Data de Nascimento</th>
+    </tr>
+    </thead>
+        <tbody id="resident">
 
         
     

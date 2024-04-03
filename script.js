@@ -1,20 +1,24 @@
 let point= document.getElementById('point');
 let results = [];
+
 async function dataStarWars(){
     const button = document.getElementById('btn1');
     button.disabled = true;
     button.hidden = true;
+
     point.innerHTML = '';
+
     let data = await fetch('https://swapi.dev/api/planets/?format=json');
     let planets = await data.json();
     results = planets.results;
-    console.log(results[0]);
+    console.log(results);
    
     return results
 }
 
 async function planets(){
     results = await dataStarWars();
+
     let i = 0;
     results.forEach(planet => {
         let btn = document.createElement('button');
@@ -23,6 +27,7 @@ async function planets(){
         `;
 
         point.appendChild(btn);
+
         i++;
     });
     
@@ -31,16 +36,18 @@ async function planets(){
 function dataPlanet(i){
     let index = document.getElementById('res');
     let list = document.createElement('ul');
+
     index.innerHTML='';
+
     list.innerHTML = `
         <ul>
             <li>Nome: ${results[i].name}</li>
             <li>Clima: ${results[i].climate}</li>
             <li>População: ${results[i].population}</li>
             <li>Terreno: ${results[i].terrain}</li>
-        </ul>
-    `
-    index.appendChild(list)
+        </ul>`;
+
+    index.appendChild(list);
 }
 
 
@@ -63,8 +70,10 @@ async function newpage() {
             window.location.href = url;
         }
     });
+
     const button = document.getElementById('btn1');
     button.disabled = false;
     button.hidden = false;
+    
     document.getElementById('res').innerText = 'Planeta não localizado!'
 }
