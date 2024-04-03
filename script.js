@@ -51,9 +51,15 @@ function dataPlanet(i){
 }
 
 
+function keypress(){
+    event.preventDefault();
+    newpage();
+
+};
+
 async function newpage() {
-    const formData = new FormData(document.getElementById('Pesquisar'));
-    const planetname = formData.get('Pesquisa');
+    const formData = new FormData(document.getElementById('Researches'));
+    const planetname = formData.get('Search');
 
     results = await dataStarWars();
 
@@ -74,6 +80,6 @@ async function newpage() {
     const button = document.getElementById('btn1');
     button.disabled = false;
     button.hidden = false;
-    
+
     document.getElementById('res').innerText = 'Planeta não localizado!'
 }

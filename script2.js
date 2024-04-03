@@ -21,7 +21,12 @@ window.onload = function () {
 
 }
 
-
+function keypress(event){
+    if(event.keuCode === 13){
+        event.preventDefault();
+        newpage();
+    }
+}
 
 let results = [];
 
